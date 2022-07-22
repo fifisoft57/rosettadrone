@@ -1075,6 +1075,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             case INSPIRE_1:
             case Spark:
             case MAVIC_AIR_2:
+            case DJI_MINI_2:
+            case DJI_MINI_SE:
             case INSPIRE_1_PRO:
             case INSPIRE_1_RAW:     // Verified...
             case MAVIC_AIR:         // Verified...
