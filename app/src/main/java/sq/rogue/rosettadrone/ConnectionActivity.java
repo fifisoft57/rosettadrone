@@ -290,11 +290,6 @@ public class ConnectionActivity extends Activity implements View.OnClickListener
         mBtnOpen.setOnClickListener(this);
         mBtnOpen.setEnabled(false);
 
-        mBtnSim = (Button) findViewById(R.id.btn_sim);
-        mBtnSim.setOnClickListener(this);
-
-        mBtnTest = (Button) findViewById(R.id.btn_test);
-        mBtnTest.setOnClickListener(this);
 
         Context appContext = this.getBaseContext();
         String version = "Version: " + getAppVersion(appContext);
@@ -363,44 +358,6 @@ public class ConnectionActivity extends Activity implements View.OnClickListener
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-
-            // For debugging we can tap the drone icon 5 times to be able to open the software without a drone connected.
-            case R.id.btn_test:
-                if (++hiddenkey == 5) {
-                    showToast("TestMode enabled...");
-                    TextView lTextConnectionStatus = (TextView) findViewById(R.id.text_model_test);
-                    lTextConnectionStatus.setText("TestMode");
-                    mUIHandler = new Handler(Looper.getMainLooper());
-                    mUIHandler.postDelayed(startApp, 50);
-                 //   hiddenkey = 6;
-                }
-                if (hiddenkey >= 10) {
-                    showToast("TestMode disabled...");
-                    TextView lTextConnectionStatus = (TextView) findViewById(R.id.text_model_test);
-                    lTextConnectionStatus.setText("NormalMode");
-
-//                    mUIHandler = new Handler(Looper.getMainLooper());
-//                    mUIHandler.postDelayed(startApp, 50);
-                    hiddenkey = 0;
-                }
-                break;
-
-            case R.id.btn_sim: {
-                if (RDApplication.getSim() == true) {
-                    TextView lTextConnectionStatus = (TextView) findViewById(R.id.text_model_simulated);
-                    lTextConnectionStatus.setText("");
-
-                    showToast("noSimulate...");
-                    RDApplication.setSim(false);
-                    mTextConnectionStatus.setText(R.string.connection_loose);
-                } else {
-                    showToast("Simulate...");
-                    RDApplication.setSim(true);
-                    TextView lTextConnectionStatus = (TextView) findViewById(R.id.text_model_simulated);
-                    lTextConnectionStatus.setText("Active");
-                }
-                break;
-            }
             case R.id.btn_start: {
                 mBtnOpen.setEnabled(false);
                 unregisterReceiver(mReceiver);
